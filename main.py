@@ -61,11 +61,14 @@ class MLPModel(nn.Module):
         super().__init__(*args, **kwargs)
         self.model = nn.Sequential(
             nn.Linear(3,128),
+            # nn.BatchNorm1d(128),
             nn.ReLU(),
             nn.Linear(128,64),
+            nn.BatchNorm1d(64),
             nn.ReLU(),
-            nn.Dropout(.1),
+            nn.Dropout(0),
             nn.Linear(64,32),
+            nn.BatchNorm1d(32),
             nn.ReLU(),
             nn.Dropout(0),
             nn.Linear(32,16),
