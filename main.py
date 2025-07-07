@@ -12,10 +12,10 @@ SEED = 40
 np.random.seed(SEED)
 torch.manual_seed(SEED)
 
-
-x1 = np.random.uniform(0,1,1000).reshape(-1,1)
-x2 = np.random.uniform(0,10,1000).reshape(-1,1)
-x3 = np.random.uniform(0,100,1000).reshape(-1,1)
+N = 10000
+x1 = np.random.uniform(0,1,N).reshape(-1,1)
+x2 = np.random.uniform(0,10,N).reshape(-1,1)
+x3 = np.random.uniform(0,100,N).reshape(-1,1)
 x = np.hstack((x1,x2,x3))
 
 y1 = 100*np.sin(1.5*np.pi*x1)
