@@ -81,7 +81,7 @@ class MLPModel(nn.Module):
 
 model = MLPModel().to(device)
 criteria = torch.nn.MSELoss()
-optimizer = torch.optim.Adam(model.parameters(), lr= 1e-3)
+optimizer = torch.optim.Adam(model.parameters(), lr= 1e-3, weight_decay= 1e-5)
 scheduler = torch.optim.lr_scheduler.StepLR(optimizer, step_size= 10, gamma= 0.5)
 epochs = 80
 error_train = []
