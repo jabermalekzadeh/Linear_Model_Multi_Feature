@@ -6,6 +6,7 @@ from torch.utils.data import TensorDataset, DataLoader
 import torch.nn as nn
 from tqdm import tqdm
 from sklearn import preprocessing
+from sklearn.metrics import r2_score
 
 
 SEED = 40
@@ -64,13 +65,13 @@ class MLPModel(nn.Module):
             # nn.BatchNorm1d(128),
             nn.ReLU(),
             nn.Linear(128,64),
-            nn.BatchNorm1d(64),
+            # nn.BatchNorm1d(64),
             nn.ReLU(),
             nn.Dropout(0),
             nn.Linear(64,32),
-            nn.BatchNorm1d(32),
+            # nn.BatchNorm1d(32),
             nn.ReLU(),
-            nn.Dropout(0),
+            # nn.Dropout(.1),
             nn.Linear(32,16),
             nn.ReLU(),
             nn.Linear(16,1),
@@ -128,9 +129,13 @@ x_test_plot = scaler_x.inverse_transform(x_test_plot)
 y_test_plot = scaler_y.inverse_transform(y_test_plot)
 y_test_pred = scaler_y.inverse_transform(y_test_pred)
 
+r2_s = r2_score(y_test_pred, y_test_plot)
+print(f"R2 Score is: {r2_s: .4f}")
+
 # print(len(y_test_pred))
 plt.figure()
 plt.scatter(x_test_plot[:,1], y_test_plot, label = 'Label')
 plt.scatter(x_test_plot[:,1], y_test_pred, label = 'Target', marker= '+')
 plt.legend()
 plt.show()
+
