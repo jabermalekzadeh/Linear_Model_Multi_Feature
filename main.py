@@ -18,11 +18,12 @@ x1 = np.random.uniform(0,1,N).reshape(-1,1)
 x2 = np.random.uniform(0,10,N).reshape(-1,1)
 x3 = np.random.uniform(0,100,N).reshape(-1,1)
 x = np.hstack((x1,x2,x3))
+Noise = np.random.uniform(0,20,N).reshape(-1,1)
 
 y1 = 100*np.sin(1.5*np.pi*x1)
 y2 = x2**2
 y3 = 50*np.log(x3+1)
-y = (y1+y2+y3).reshape(-1,1)
+y = (y1+y2+y3).reshape(-1,1) + Noise
 
 device = torch.device('mps' if torch.backends.mps.is_available() else 'cpu')
 device = 'cpu'
